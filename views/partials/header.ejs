@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title || "E-Store" %></title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">E-Store</a>
+
+    <nav class="nav-links">
+      <a href="/">Shop</a>
+      <a href="/cart">Cart <span class="badge"><%= cartCount %></span></a>
+
+      <% if (user) { %>
+        <a href="/orders">My Orders</a>
+        <span class="hello">Hi, <%= user.name %></span>
+        <form action="/logout" method="POST" class="inline">
+          <button class="btn btn-ghost" type="submit">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a class="btn btn-primary" href="/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="container">

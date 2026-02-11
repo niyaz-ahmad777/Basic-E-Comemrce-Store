@@ -1,0 +1,34 @@
+<%- include("partials/header", { title: "Checkout - E-Store" }) %>
+
+<h1>Checkout</h1>
+
+<div class="checkout">
+  <div class="box">
+    <h3>Order Summary</h3>
+    <% items.forEach(it => { %>
+      <div class="summary">
+        <span><%= it.title %> × <%= it.qty %></span>
+        <span>₹<%= it.price * it.qty %></span>
+      </div>
+    <% }) %>
+    <hr/>
+    <div class="summary total">
+      <strong>Total</strong>
+      <strong>₹<%= total %></strong>
+    </div>
+  </div>
+
+  <form class="box" action="/checkout" method="POST">
+    <h3>Delivery Details</h3>
+    <label>Phone</label>
+    <input name="phone" placeholder="e.g. 9876543210" required />
+
+    <label>Address</label>
+    <textarea name="address" rows="4" placeholder="Full address" required></textarea>
+
+    <button class="btn btn-primary" type="submit">Place Order</button>
+    <p class="muted">Payment: COD (demo)</p>
+  </form>
+</div>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,35 @@
+<%- include("partials/header", { title: "Cart - E-Store" }) %>
+
+<h1>Your Cart</h1>
+
+<% if (items.length === 0) { %>
+  <p class="muted">Cart is empty. <a href="/">Continue shopping</a></p>
+<% } else { %>
+  <div class="cart">
+    <% items.forEach(it => { %>
+      <div class="cart-item">
+        <img src="<%= it.image_url %>" alt="<%= it.title %>"/>
+        <div class="cart-info">
+          <h3><%= it.title %></h3>
+          <p>₹<%= it.price %></p>
+        </div>
+        <div class="cart-actions">
+          <input type="number" min="0" value="<%= it.qty %>" onchange="updateCart(<%= it.id %>, this.value)" />
+          <button class="btn btn-ghost" onclick="updateCart(<%= it.id %>, 0)">Remove</button>
+        </div>
+      </div>
+    <% }) %>
+
+    <div class="cart-total">
+      <h2>Total: ₹<%= total %></h2>
+      <div class="row">
+        <form action="/cart/clear" method="POST">
+          <button class="btn btn-ghost" type="submit">Clear Cart</button>
+        </form>
+        <a class="btn btn-primary" href="/checkout">Checkout</a>
+      </div>
+    </div>
+  </div>
+<% } %>
+
+<%- include("partials/footer") %>

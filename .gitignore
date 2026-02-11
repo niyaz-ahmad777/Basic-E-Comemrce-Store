@@ -1,0 +1,8 @@
+node_modules/
+*.db
+sessions.db
+ecommerce.db
+.DS_Store
+.env
+*.log
+npm-debug.log*

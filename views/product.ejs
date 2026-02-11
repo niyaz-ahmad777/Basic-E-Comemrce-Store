@@ -1,0 +1,26 @@
+<%- include("partials/header", { title: product.title + " - E-Store" }) %>
+
+<section class="product">
+  <img 
+    class="product-img" 
+    src="<%= product.image_url %>" 
+    alt="<%= product.title %>"
+    onerror="this.onerror=null;this.src='https://via.placeholder.com/900x600?text=Product+Image';"
+  />
+  <div class="product-info">
+    <h1><%= product.title %></h1>
+    <p class="price big">₹<%= product.price %></p>
+    <p class="muted">Stock: <%= product.stock %></p>
+    <p><%= product.description %></p>
+
+    <div class="row">
+      <input id="qty" type="number" min="1" value="1" class="qty"/>
+      <button class="btn btn-primary" onclick="addToCart(<%= product.id %>, document.getElementById('qty').value)">
+        Add to Cart
+      </button>
+      <a class="btn btn-ghost" href="/cart">Go to Cart</a>
+    </div>
+  </div>
+</section>
+
+<%- include("partials/footer") %>

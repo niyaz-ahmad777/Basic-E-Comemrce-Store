@@ -1,0 +1,31 @@
+<%- include("partials/header", { title: "My Orders - E-Store" }) %>
+
+<h1>My Orders</h1>
+
+<% if (orders.length === 0) { %>
+  <p class="muted">No orders yet.</p>
+<% } else { %>
+  <% orders.forEach(o => { %>
+    <div class="order">
+      <div class="order-head">
+        <strong>Order #<%= o.id %></strong>
+        <span class="status"><%= o.status %></span>
+      </div>
+      <p class="muted">Placed: <%= o.created_at %></p>
+      <p><strong>Total:</strong> ₹<%= o.total %></p>
+      <p><strong>Phone:</strong> <%= o.phone %></p>
+      <p><strong>Address:</strong> <%= o.address %></p>
+
+      <div class="items">
+        <% (itemsByOrder[o.id] || []).forEach(it => { %>
+          <div class="summary">
+            <span><%= it.title %> × <%= it.qty %></span>
+            <span>₹<%= it.price * it.qty %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  <% }) %>
+<% } %>
+
+<%- include("partials/footer") %>

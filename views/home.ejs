@@ -1,0 +1,29 @@
+<%- include("partials/header", { title: "Shop - E-Store" }) %>
+
+<section class="hero">
+  <h1>Shop Products</h1>
+  <p>Clean UI • Fast checkout • Professional demo</p>
+</section>
+
+<section class="grid">
+  <% products.forEach(p => { %>
+    <article class="card reveal">
+      <img 
+        src="<%= p.image_url %>" 
+        alt="<%= p.title %>" 
+        loading="lazy"
+        onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Product+Image';"
+      />
+      <div class="card-body">
+        <h3><%= p.title %></h3>
+        <p class="price">₹<%= p.price %></p>
+        <div class="row">
+          <a class="btn btn-ghost" href="/product/<%= p.id %>">View</a>
+          <button class="btn btn-primary" onclick="addToCart(<%= p.id %>, 1)">Add</button>
+        </div>
+      </div>
+    </article>
+  <% }) %>
+</section>
+
+<%- include("partials/footer") %>
